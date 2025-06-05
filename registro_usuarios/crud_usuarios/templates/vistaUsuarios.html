@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Registro usuarios</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" name="registrar">enviar</button>
+    </form>
+    
+    <div class="container">
+        <h2>Usuarios registrados</h2>
+        {% for usuario in usuario %}
+        <li>
+            <span>Nombre: {{usuario.nombre}}</span> <br>
+            <span>Apellidos:{{usuario.apellidos}}</span> <br>
+            <span>N° Identificación: {{usuario.numero_Identificacion}}</span> <br>
+            <span>Fecha nacimiento: {{usuario.fecha_nacimiento}}</span> <br>
+            <span>Numero telefonico: {{usuario.numero_telefonico}}</span> <br> <br>
+           
+        </li>
+        {%empty%}
+            <li>No hay tareas guardadas</li>
+        {% endfor %}
+
+    </div>
+
+    <div>
+        <form action="" method="POST">
+         {% csrf_token %}
+        <span>Editar usuarios</span>
+        <label for="">Ingrese el id: </label><input type="text" id="campoId" name="campoId">
+        <button id="enviarId" name="editar" type="submit">Consultar</button>
+        </form>
+        
+       <div>
+        <h2>Resultados:</h2>
+        {% if usuario_encontrado%}
+            <span>Nombre: {{usuario_encontrado.nombre}}</span> <br>
+            <span>Apellidos:{{usuario_encontrado.apellidos}}</span> <br>
+            <span>N° Identificación: {{usuario_encontrado.numero_Identificacion}}</span> <br>
+            <span>Fecha nacimiento: {{usuario_encontrado.fecha_nacimiento}}</span> <br>
+            <span>Numero telefonico: {{usuario_encontrado.numero_telefonico}}</span> <br> <br>
+        {% else %}
+            <span>No se encontro el usuario</span>
+        {% endif %}
+       </div>
+       
+       
+       
+    </div>
+   
+</body>
+</html>
